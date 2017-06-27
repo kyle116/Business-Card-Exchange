@@ -1,2 +1,52 @@
 <h1>Users#edit</h1>
 <p>Find me in app/views/users/edit.html.erb</p>
+
+<%= form_for @user do |f| %>
+  <div>
+    <%= f.text_field :username, placeholder: "Username" %>
+  </div>
+
+  <div>
+    <%= f.email_field :email, placeholder: "Email" %>
+  </div>
+
+  <div>
+    <%= f.password_field :password, placeholder: "Password" %>
+  </div>
+
+  <div>
+    <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
+  </div>
+
+
+  <div>
+    <%= f.text_field :name, placeholder: "Full Name" %>
+  </div>
+
+  <div>
+    <%= f.text_field :job_title, placeholder: "Job Title" %>
+  </div>
+
+  <div>
+    <%= f.telephone_field :phone_number, placeholder: "Phone" %>
+  </div>
+
+  <div>
+    <%= f.text_field :website, placeholder: "Website" %>
+  </div>
+
+  <div>
+    <%= f.text_field :address, placeholder: "Address" %>
+  </div>
+
+  <div>
+    <%= f.text_field :company_name, placeholder: "Company Name" %>
+  </div>
+
+  <div>
+    <%= f.submit "Update Account" %>
+<% end %>
+
+
+
+<p>DELETE Button</p>
