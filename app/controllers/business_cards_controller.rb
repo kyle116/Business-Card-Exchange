@@ -1,5 +1,8 @@
 class BusinessCardsController < ApplicationController
   def destroy
+    @business_card = BusinessCard.find params[:id]
+    @business_card.destroy
+    redirect_to user_path
   end
 
   def edit

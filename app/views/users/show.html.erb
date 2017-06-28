@@ -1,15 +1,83 @@
 <h1>PROFILE Page</h1>
 
 <% if @user.id == current_user.id %>
-    <%= link_to 'Edit', edit_user_path %>
+    <%= link_to 'Edit/Delete', edit_user_path %>
+
 <% end %>
 
 
 <p>Find me in app/views/users/show.html.erb</p>
-<p>PROFILE Page</p>
 
 
-<ul>
+
+<div class="col-md-3 the-sidebar">
+  <div class="profile-sidebar">
+    <!-- SIDEBAR USERPIC -->
+    <div class="profile-userpic">
+      <img src="" class="img-responsive" alt="">
+    </div>
+    <!-- END SIDEBAR USERPIC -->
+    <!-- SIDEBAR USER TITLE -->
+    <div class="profile-usertitle">
+      <div class="profile-usertitle-name">
+        <%= @user.name %>
+      </div>
+      <div class="profile-usertitle-job">
+        <%= @user.job_title %>
+      </div>
+    </div>
+    <!-- END SIDEBAR USER TITLE -->
+    <!-- SIDEBAR BUTTONS -->
+    <div class="profile-userbuttons">
+      <!-- TENTATIVE NOT SURE WHERE THE ADD BUTTON SHOULD BE -->
+      <button type="button" class="btn btn-success btn-sm">Add</button>
+    </div>
+    <!-- END SIDEBAR BUTTONS -->
+    <!-- SIDEBAR MENU -->
+    <div class="profile-usermenu">
+      <ul class="nav">
+        <li class="active">
+          <a href="#">
+          <i class="glyphicon glyphicon-user"></i>
+          <%= @user.username %> </a>
+        </li>
+        <li>
+          <a href="#">
+          <i class="glyphicon glyphicon-earphone"></i>
+          <%= @user.phone_number %> </a>
+        </li>
+        <li>
+          <a href="#">
+          <i class="glyphicon glyphicon-envelope"></i>
+          <%= @user.email %> </a>
+        </li>
+        <li>
+          <a href="#">
+          <i class="glyphicon glyphicon-globe"></i>
+          <%= @user.website %> </a>
+        </li>
+        <li>
+          <a href="#">
+          <i class="glyphicon glyphicon-home"></i>
+          <%= @user.address %> </a>
+        </li>
+        <li>
+          <a href="#">
+          <i class="glyphicon glyphicon-briefcase"></i>
+          <%= @user.company_name %> </a>
+        </li>
+      </ul>
+    </div>
+    <!-- END MENU -->
+  </div>
+</div>
+
+
+
+
+
+
+<!-- <ul>
   <li><%= @user.username %></li>
   <li><%= @user.name %></li>
   <li><%= @user.job_title %></li>
@@ -18,4 +86,30 @@
   <li><%= @user.website %></li>
   <li><%= @user.address %></li>
   <li><%= @user.company_name %></li>
-</ul>
+</ul> -->
+
+<div class="card user_card">
+    <h2><%= @user.company_name %></h2>
+    <h3><%= @user.name %></h3>
+    <p><%= @user.job_title %></p>
+    <p><%= @user.phone_number %></p>
+    <p><%= @user.email %></p>
+    <p><%= @user.website %></p>
+    <p><%= @user.address %></p>
+</div>
+
+<% if @user.business_cards != [] %>
+  <% @user.business_cards.each do |b| %>
+    <div class="card">
+
+      <h2><%= b.contact.company_name %></h2>
+      <h3><%= b.contact.name %></h3>
+      <p><%= b.contact.job_title %></p>
+      <p><%= b.contact.phone_number %></p>
+      <p><%= b.contact.email %></p>
+      <p><%= b.contact.website %></p>
+      <p><%= b.contact.address %></p>
+      <!-- <p><%= link_to 'Delete Card', bc_delete_path(b.id), method: :delete %></p> -->
+    </div>
+  <% end %>
+<% end %>

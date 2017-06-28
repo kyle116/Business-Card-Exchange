@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'notes/create'
+
+  get 'notes/destroy'
+
+  get 'notes/edit'
+
+  get 'notes/index'
+
+  get 'notes/new'
+
+  get 'notes/show'
+
+  get 'notes/update'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'users#index'
 
@@ -14,4 +28,6 @@ Rails.application.routes.draw do
   get    '/login'          => 'sessions#new',     as: :login
   post   '/login'          => 'sessions#create'
   delete '/logout'         => 'sessions#destroy', as: :logout
+
+  delete '/bc/delete/:id'   => 'business_cards#destroy', as: :bc_delete
 end
