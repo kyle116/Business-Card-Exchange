@@ -27,7 +27,7 @@
    height: 100%;
    width: 100%;
  }
- body {
+ body, .profile-att {
    font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
  }
  hr {
@@ -174,7 +174,7 @@
    background-size: cover;
    -o-background-size: cover;
    background-position: center;
-   background-image: url('../images/header.jpg');
+  //  background-image: url('../images/header.jpg');
    text-align: center;
    color: white;
  }
@@ -433,7 +433,9 @@
  body {
    webkit-tap-highlight-color: #222222;
  }
-
+ .add-btn {
+   color: white;
+ }
 
 /* SIDEBAR */
 /* Profile container */

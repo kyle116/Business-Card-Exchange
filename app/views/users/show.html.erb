@@ -1,8 +1,7 @@
-<h1>PROFILE Page</h1>
+<h1>Wallet</h1>
 
 <% if @user.id == current_user.id %>
-    <%= link_to 'Edit/Delete', edit_user_path %>
-
+  <%= link_to 'Edit/Delete', edit_user_path %>
 <% end %>
 
 
@@ -30,39 +29,45 @@
     <!-- SIDEBAR BUTTONS -->
     <div class="profile-userbuttons">
       <!-- TENTATIVE NOT SURE WHERE THE ADD BUTTON SHOULD BE -->
-      <button type="button" class="btn btn-success btn-sm">Add</button>
+
+      <% if @user.id.to_s == current_user.id.to_s%>
+
+      <% elsif current_user.business_cards.where(contact_id:@user.id).count == 0 %>
+        <button type="button" class="btn btn-success btn-sm"><%= link_to 'Add', bc_create_path(@user.id) %></button>
+      <% end %>
+
     </div>
     <!-- END SIDEBAR BUTTONS -->
     <!-- SIDEBAR MENU -->
     <div class="profile-usermenu">
       <ul class="nav">
-        <li class="active">
-          <a href="#">
+        <li>
+          <a class="profile-att">
           <i class="glyphicon glyphicon-user"></i>
           <%= @user.username %> </a>
         </li>
         <li>
-          <a href="#">
+          <a class="profile-att">
           <i class="glyphicon glyphicon-earphone"></i>
           <%= @user.phone_number %> </a>
         </li>
         <li>
-          <a href="#">
+          <a class="profile-att">
           <i class="glyphicon glyphicon-envelope"></i>
           <%= @user.email %> </a>
         </li>
         <li>
-          <a href="#">
+          <a class="profile-att">
           <i class="glyphicon glyphicon-globe"></i>
           <%= @user.website %> </a>
         </li>
         <li>
-          <a href="#">
+          <a class="profile-att">
           <i class="glyphicon glyphicon-home"></i>
           <%= @user.address %> </a>
         </li>
         <li>
-          <a href="#">
+          <a class="profile-att">
           <i class="glyphicon glyphicon-briefcase"></i>
           <%= @user.company_name %> </a>
         </li>
@@ -76,18 +81,6 @@
 
 
 
-
-<!-- <ul>
-  <li><%= @user.username %></li>
-  <li><%= @user.name %></li>
-  <li><%= @user.job_title %></li>
-  <li><%= @user.phone_number %></li>
-  <li><%= @user.email %></li>
-  <li><%= @user.website %></li>
-  <li><%= @user.address %></li>
-  <li><%= @user.company_name %></li>
-</ul> -->
-
 <div class="card user_card">
     <h2><%= @user.company_name %></h2>
     <h3><%= @user.name %></h3>
@@ -98,7 +91,7 @@
     <p><%= @user.address %></p>
 </div>
 
-<% if @user.business_cards != [] %>
+<% unless @user.business_cards.empty? %>
   <% @user.business_cards.each do |b| %>
     <div class="card">
 
@@ -109,7 +102,28 @@
       <p><%= b.contact.email %></p>
       <p><%= b.contact.website %></p>
       <p><%= b.contact.address %></p>
-      <!-- <p><%= link_to 'Delete Card', bc_delete_path(b.id), method: :delete %></p> -->
+      <% if @user.id == current_user.id %>
+        <% if b.note %>
+          <p>Notes: <%= b.note.body %></p>
+          <%= link_to 'Edit', user_path(@user) + '?edit=' + b.note.id.to_s %>
+          <% if params[:edit] == b.note.id.to_s %>
+            <%= form_for @note, :url => edit_note_path(@user) do |n| %>
+              <%= n.text_field :body, placeholder:"Edit Note" %>
+              <%= n.hidden_field :business_card_id, value: b.id %>
+              <%= n.submit%>
+            <% end %>
+          <% end %>
+        <%= link_to('Delete', delete_note_path(@user.id,b.note.id), method: :delete) %>
+        <% else %>
+          <%= form_for @note, :url => new_note_path(@user) do |n| %>
+            <%= n.text_field :body, placeholder:"Note description" %>
+            <%= n.hidden_field :business_card_id, value: b.id%>
+            <%= n.submit %>
+          <% end %>
+        <% end %>
+      <% end %>
+
     </div>
+
   <% end %>
 <% end %>

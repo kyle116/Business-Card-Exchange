@@ -6,6 +6,10 @@ class UsersController < ApplicationController
 
   def show # the user profile page that has all the business cards
     @user = User.find params[:id]
+
+    # need to fix this
+    @note = Note.new
+    @note_edit = Note.find params[:id]
   end
 
   def new
