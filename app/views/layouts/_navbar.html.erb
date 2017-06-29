@@ -21,6 +21,7 @@
 
 
           <% if logged_in %>
+            <li><%= link_to 'Browse Users', all_users_path %></li>
             <li><%= link_to user_path(current_user) do %>
               <%= current_user.email %>
               <span class="glyphicon glyphicon-user"></span>
@@ -52,9 +53,10 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <% if logged_in %>
+              <li><%= link_to 'Browse Users', all_users_path %></li>
               <li>
                 <%= link_to user_path(current_user) do %>
-                  <%= current_user.email %><span class="glyphicon glyphicon-user"></span>
+                  <%= current_user.email %> <span class="glyphicon glyphicon-user"></span>
                 <% end %>
               </li>
               <li>

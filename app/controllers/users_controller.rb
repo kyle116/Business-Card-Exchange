@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     # need to fix this
     @note = Note.new
-    @note_edit = Note.find params[:id]
+
   end
 
   def new
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new user_params
-    # @business_card = BusinessCard.new bc_params
+
 
     if @user.save
       session[:user_id] = @user.id
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     # @user.address = params[:user][:address]
     # @user.company_name = params[:user][:company_name]
     # @user.password = params[:user][:password]
-    redirect_to user_path User.find params[:id]
+    redirect_to user_path @user
   end
 
   def destroy
@@ -57,6 +57,10 @@ class UsersController < ApplicationController
     else
       redirect_to users_path
     end
+  end
+
+  def all
+    @users = User.all
   end
 
   private

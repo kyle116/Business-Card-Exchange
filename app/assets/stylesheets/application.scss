@@ -14,13 +14,7 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
- .card {
-     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
-     transition: 0.3s;
-     width: 30%;
-     padding: 2px 16px;
-     line-height: 5px;
- }
+
 
  html,
  body {
@@ -496,10 +490,6 @@
   margin-right: 0px;
 }
 
-.profile-usermenu {
-  margin-top: 30px;
-}
-
 .profile-usermenu ul li {
   border-bottom: 1px solid #f0f4f7;
 }
@@ -542,8 +532,26 @@
   min-height: 460px;
 }
 
+/* Business Card */
+.ccontainer {
+  background:white;
+  width:445px;
+  height:225px;
+  font-family: 'Ubuntu', sans-serif;
+  margin-bottom: 10px;
+}
+.line1 {font-family: 'Ubuntu', sans-serif;font-size:20px;color:black;margin:8px;}
+.line2 {font-family: 'Ubuntu', sans-serif;font-size:12px;color:black;margin:-8px 0 0 9px;}
+.contact {font-family: 'Ubuntu', sans-serif;color:black;font-size:12px;width:250px;margin:20px 0 0 0;padding-left: 8px;}
+.bcontact {font-family: 'Ubuntu', sans-serif;color:black;font-size:12px;width:250px;margin:0 0 0 0;padding-left: 8px;}
+.textc {font-family: 'Ubuntu', sans-serif;color:black;font-size:12px;width:220px;margin:0 0 0 0;margin-left: 8px;}
+
 
 /* Personal */
+h1 {
+  // display: inline-block;
+}
+
 .navbar {
   background-color: black;
   margin-bottom: 0;
@@ -555,4 +563,39 @@ header {
 
 .the-sidebar {
   float: right;
+}
+
+.user-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    transition: 0.3s;
+    width: 30%;
+    padding: 2px 16px;
+    line-height: 5px;
+
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    transition: 0.3s;
+    width: 30%;
+    padding: 2px 16px;
+    line-height: 5px;
+    display: inline-block;
+}
+
+.front {
+  // background-color: blue;
+}
+
+.back {
+  // background-color: pink;
+}
+
+.card-text {
+  margin-bottom: 5px;
+}
+
+.back .del {
+  font-size: 12px;
+  margin-left: 8px;
 }

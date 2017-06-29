@@ -1,11 +1,6 @@
 <h1>Wallet</h1>
 
-<% if @user.id == current_user.id %>
-  <%= link_to 'Edit/Delete', edit_user_path %>
-<% end %>
 
-
-<p>Find me in app/views/users/show.html.erb</p>
 
 
 
@@ -13,7 +8,7 @@
   <div class="profile-sidebar">
     <!-- SIDEBAR USERPIC -->
     <div class="profile-userpic">
-      <img src="" class="img-responsive" alt="">
+      <img src="https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" class="img-responsive" alt="">
     </div>
     <!-- END SIDEBAR USERPIC -->
     <!-- SIDEBAR USER TITLE -->
@@ -24,6 +19,9 @@
       <div class="profile-usertitle-job">
         <%= @user.job_title %>
       </div>
+      <% if @user.id == current_user.id %>
+        <%= link_to 'Edit/Delete', edit_user_path %>
+      <% end %>
     </div>
     <!-- END SIDEBAR USER TITLE -->
     <!-- SIDEBAR BUTTONS -->
@@ -81,49 +79,91 @@
 
 
 
-<div class="card user_card">
-    <h2><%= @user.company_name %></h2>
-    <h3><%= @user.name %></h3>
-    <p><%= @user.job_title %></p>
-    <p><%= @user.phone_number %></p>
-    <p><%= @user.email %></p>
-    <p><%= @user.website %></p>
-    <p><%= @user.address %></p>
+<div class="user-card ccontainer">
+    <p class="line1 card-text"><%= @user.name %></p>
+    <p class="line2 card-text"><%= @user.job_title %></p>
+    <p class="card-text contact">
+      <%= @user.company_name %></br>
+      <%= @user.phone_number %></br>
+      <%= @user.email %></br>
+      <%= @user.website %></br>
+      <%= @user.address %>
+    </p>
 </div>
 
 <% unless @user.business_cards.empty? %>
   <% @user.business_cards.each do |b| %>
-    <div class="card">
-
-      <h2><%= b.contact.company_name %></h2>
-      <h3><%= b.contact.name %></h3>
-      <p><%= b.contact.job_title %></p>
-      <p><%= b.contact.phone_number %></p>
-      <p><%= b.contact.email %></p>
-      <p><%= b.contact.website %></p>
-      <p><%= b.contact.address %></p>
-      <% if @user.id == current_user.id %>
-        <% if b.note %>
-          <p>Notes: <%= b.note.body %></p>
-          <%= link_to 'Edit', user_path(@user) + '?edit=' + b.note.id.to_s %>
-          <% if params[:edit] == b.note.id.to_s %>
-            <%= form_for @note, :url => edit_note_path(@user) do |n| %>
-              <%= n.text_field :body, placeholder:"Edit Note" %>
-              <%= n.hidden_field :business_card_id, value: b.id %>
-              <%= n.submit%>
-            <% end %>
+    <div class="card bc-card ccontainer">
+      <div class="front">
+        <p class="line1 card-text"><%= b.contact.name %></p>
+        <p class="line2 card-text"><%= b.contact.job_title %></p>
+        <p class="card-text contact">
+          <%= b.contact.company_name %></br>
+          <%= b.contact.phone_number %></br>
+          <%= b.contact.email %></br>
+          <%= b.contact.website %></br>
+          <%= b.contact.address %></br>
+          <% if @user.id == current_user.id %>
+            <%= link_to('Delete', bc_delete_path(b), method: :delete) %>
           <% end %>
-        <%= link_to('Delete', delete_note_path(@user.id,b.note.id), method: :delete) %>
-        <% else %>
-          <%= form_for @note, :url => new_note_path(@user) do |n| %>
-            <%= n.text_field :body, placeholder:"Note description" %>
-            <%= n.hidden_field :business_card_id, value: b.id%>
-            <%= n.submit %>
+        </p>
+      </div>
+
+      <!-- Flip Button idea -->
+      <!-- <button type="button" name="button" class="flip">Flip</button> -->
+
+
+      <div class="back">
+        <% if @user.id == current_user.id %>
+          <% if b.note %>
+            <p class="bcontact">
+              Notes: <%= b.note.body %></br>
+              <%= link_to 'Edit', user_path(@user) + '?edit=' + b.note.id.to_s %>
+              <%= link_to('Delete', delete_note_path(@user.id,b.note.id), method: :delete, class: 'del') %>
+            <% if params[:edit] == b.note.id.to_s %>
+              <%= form_for b.note, :url => edit_note_path(@user) do |n| %>
+                <%= n.text_field :body, placeholder:"Edit Note", class: "textc" %>
+                <%= n.hidden_field :business_card_id, value: b.id %>
+                <%= n.submit%>
+              <% end %>
+            <% end %>
+
+            </p>
+          <% else %>
+            <p class="bcontact">
+            <%= form_for @note, :url => new_note_path(@user) do |n| %>
+              <%= n.text_field :body, placeholder:"Note description", class: "textc" %>
+              <%= n.hidden_field :business_card_id, value: b.id%>
+              <%= n.submit %>
+            <% end %>
+            </p>
           <% end %>
         <% end %>
-      <% end %>
+      </div>
+
 
     </div>
 
   <% end %>
 <% end %>
+
+
+<!-- <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script> -->
+<script type="text/javascript">
+  // $('.bc-card').flip()
+  // $('#input').click(function(e){
+  //   console.log("Works");
+  //   e.flip(false)
+  // })
+  // $('.back').hide();
+  // $('.flip').click(function(){
+  //       $('.front').hide();
+  //       $('.back').show();
+  //   })
+
+  // $('.flip').click(function(){
+  //       $('.back').hide();
+  //       $('.front').show();
+  //   })
+</script>

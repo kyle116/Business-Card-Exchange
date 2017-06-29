@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'users#index'
 
-
+  get    '/users/all'      => 'users#all',        as: :all_users
   get    '/users'          => 'users#index',      as: :users
   post   '/users'          => 'users#create'
   get    '/users/new'      => 'users#new',        as: :new_user
@@ -21,9 +21,9 @@ Rails.application.routes.draw do
   post   '/bc/create/:id'  => 'business_cards#create',  as: :bc_create
   delete '/bc/delete/:id'  => 'business_cards#destroy', as: :bc_delete
 
-  post   '/users/:id/note' => 'notes#create',     as: :new_note
-  get    '/users/:id/note' => 'notes#edit',       as: :edit_note
-  patch  '/users/:id/note' => 'notes#update'
-  delete '/users/:id/note/:note_id' => 'notes#destroy',    as: :delete_note
+  post   '/notes/:id/note' => 'notes#create',     as: :new_note
+  get    '/notes/:id/note' => 'notes#edit',       as: :edit_note
+  patch  '/notes/:id/note' => 'notes#update'
+  delete '/notes/:id/note/:note_id' => 'notes#destroy',    as: :delete_note
 
 end

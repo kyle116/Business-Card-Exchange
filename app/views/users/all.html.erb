@@ -1,0 +1,26 @@
+<h1>The Users</h1>
+
+
+<div class="container">
+	<div class="row">
+    <div class="span12">
+		<ul class="thumbnails" style="list-style: none;">
+      <% @users.each do |u| %>
+        <li class="span5 clearfix">
+          <div class="thumbnail clearfix">
+            <div class="caption" class="pull-left">
+
+              <h4>
+              <a><%= link_to u.name, user_path(u) %></a>
+              </h4>
+              <small><b>Job Title: </b><%= u.job_title %></small>
+            </div>
+          </div>
+        </li>
+      <% end %>
+
+
+        </ul>
+    </div>
+	</div>
+</div>

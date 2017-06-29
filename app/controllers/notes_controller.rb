@@ -30,8 +30,9 @@ class NotesController < ApplicationController
   end
 
   def update
+    @bc = BusinessCard.find params[:note][:business_card_id]
+    @bc.note.update({body: params[:note][:body]})
 
-
-    redirect_to user_path
+    redirect_to user_path params[:id]
   end
 end
