@@ -14,6 +14,47 @@ Visit [the github repository ](https://github.com/kyle116/pj2) to download the a
 This app was built with Ruby 2.3.3.
 
 
+### Local installation instructions
+
+Download the repository to your preferred directory.
+
+ Start a Posgres local server.
+
+ From the terminal and in your installation directory run
+
+ `bundle install`
+
+ to install the dependent gems.
+
+ Create the database by running
+
+ `rails db:create`.
+
+ Create the database tables by running
+
+ `rails db:migrate`
+
+ from the terminal.
+
+ In the terminal in your installation directory, run
+
+ `rails console`
+
+ to enter the rails console.
+
+ In the rails console, start the rails server by running
+
+ `rails server`
+
+ in the terminal.
+
+ User your web browser to go to
+
+ [localhost:3000 ](localhost:3000)
+
+ to use the site locally.
+
+
 ### Development process
 
 Technologies used: HTML / CSS + Bootstrap / Javascript + jQuery / Ruby + Ruby on Rails / Postgres
