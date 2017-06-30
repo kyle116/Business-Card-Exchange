@@ -31,7 +31,7 @@
       <% if @user.id.to_s == current_user.id.to_s%>
 
       <% elsif current_user.business_cards.where(contact_id:@user.id).count == 0 %>
-        <button type="button" class="btn btn-success btn-sm"><%= link_to 'Add', bc_create_path(@user.id) %></button>
+        <button type="button" class="btn btn-success btn-sm adder"><%= link_to 'Add', bc_create_path(@user.id) %></button>
       <% end %>
 
     </div>
