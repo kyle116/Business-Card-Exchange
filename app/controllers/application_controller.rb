@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in, :authorize
 
   def current_user
-    # return whatever the value of @current_user is. If it doesn't have a value, set it to whatever we get from DB, but only if they're logged in.
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 

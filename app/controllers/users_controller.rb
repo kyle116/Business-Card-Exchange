@@ -1,15 +1,12 @@
 class UsersController < ApplicationController
   before_action :authorize, only: [:show, :edit, :update, :destroy]
-  def index # welcome page
+  def index
     @users = User.all
   end
 
-  def show # the user profile page that has all the business cards
+  def show 
     @user = User.find params[:id]
-
-    # need to fix this
     @note = Note.new
-
   end
 
   def new
@@ -36,15 +33,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find params[:id]
     @user.update(user_params)
-    # @user = User.find params[:id]
-    # @user.name = params[:user][:name]
-    # @user.job_title = params[:user][:job_title]
-    # @user.phone_number = params[:user][:phone_number]
-    # @user.email = params[:user][:email]
-    # @user.website = params[:user][:website]
-    # @user.address = params[:user][:address]
-    # @user.company_name = params[:user][:company_name]
-    # @user.password = params[:user][:password]
     redirect_to user_path @user
   end
 

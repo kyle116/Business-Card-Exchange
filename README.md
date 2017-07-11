@@ -63,6 +63,13 @@ The app was generated using ruby on rails.
 
 [Trello](https://trello.com/b/BzcSkwJ2/wdi-project-2)
 
+Profile Page Wireframe
+![wireframe](https://github.com/kyle116/project2/blob/master/ERD.png)
+
+ERD Diagram
+![erd](https://github.com/kyle116/project2/blob/master/Profile_Wireframe.png)
+
+
 ## User Stories
 
 As a user, I can sign up a new account with minimal information.
